@@ -17,9 +17,11 @@ jobs:
 
       - name: Prepare Feature Name
         id: prepare_feature_name
-        if: startsWith(github.ref, 'refs/heads/feature/')
+
         run: |
-          FEATURE_NAME="${GITHUB_REF##refs/heads/feature/}"
+          BRANCH_NAME=${{github.event.ref}}
+          echo "BRANCH_NAME ${BRANCH_NAME}"
+          FEATURE_NAME="${BRANCH_NAME##refs/heads/feature/}"
           echo "::set-output name=feature_name::${FEATURE_NAME}"
           echo "FEATURE-NAME: ${FEATURE_NAME}"
 
