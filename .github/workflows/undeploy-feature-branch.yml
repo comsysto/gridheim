@@ -1,4 +1,4 @@
-name: Deploy Feature Branch
+name: Undeploy Feature Branch
 
 on:
   push:
