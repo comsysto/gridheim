@@ -1,0 +1,41 @@
+name: Deploy Feature Branch
+
+on:
+  push:
+    branches: [ feature/* ]
+    types: [ deleted ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare Feature Name
+        id: prepare_feature_name
+        if: startsWith(github.ref, 'refs/heads/feature/')
+        run: |
+          FEATURE_NAME="${GITHUB_REF##refs/heads/feature/}"
+          echo "::set-output name=feature_name::${FEATURE_NAME}"
+          echo "FEATURE-NAME: ${FEATURE_NAME}"
+
+      - name: Deploy Feature
+        run: |
+          FEATURE_NAME=${{steps.prepare_feature_name.outputs.feature_name}}
+          TARGET_DIR=./gh-pages/dev/${FEATURE_NAME}
+          git fetch
+          git worktree add gh-pages gh-pages
+          rm -r ${TARGET_DIR} || true
+          cd ./gh-pages
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "Undeployed feature ${{steps.prepare_feature_name.outputs.feature_name}}"
+          git push
+
+
