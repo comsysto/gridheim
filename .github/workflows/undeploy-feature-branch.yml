@@ -21,7 +21,7 @@ jobs:
         run: |
           BRANCH_NAME=${{github.event.ref}}
           echo "BRANCH_NAME ${BRANCH_NAME}"
-          FEATURE_NAME="${BRANCH_NAME##refs/heads/feature/}"
+          FEATURE_NAME="${BRANCH_NAME##feature/}"
           echo "::set-output name=feature_name::${FEATURE_NAME}"
           echo "FEATURE-NAME: ${FEATURE_NAME}"
 
