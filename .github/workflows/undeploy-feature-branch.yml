@@ -1,9 +1,8 @@
 name: Undeploy Feature Branch
 
 on:
-  push:
+  delete:
     branches: [ feature/* ]
-    types: [ delete ]
 
 jobs:
   deploy:
