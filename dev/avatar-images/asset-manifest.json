@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "./static/css/main.9cdb5851.chunk.css",
+    "main.js": "./static/js/main.e5b2dd0e.chunk.js",
+    "main.js.map": "./static/js/main.e5b2dd0e.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.9e041202.js",
+    "runtime-main.js.map": "./static/js/runtime-main.9e041202.js.map",
+    "static/js/2.e88828a7.chunk.js": "./static/js/2.e88828a7.chunk.js",
+    "static/js/2.e88828a7.chunk.js.map": "./static/js/2.e88828a7.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.a6dac00be9a99729cf93f853a1af77b8.js": "./precache-manifest.a6dac00be9a99729cf93f853a1af77b8.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.9cdb5851.chunk.css.map": "./static/css/main.9cdb5851.chunk.css.map",
+    "static/media/john-westrock-UHFQPFt5-WA-unsplash.jpg": "./static/media/john-westrock-UHFQPFt5-WA-unsplash.3466438c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9e041202.js",
+    "static/js/2.e88828a7.chunk.js",
+    "static/css/main.9cdb5851.chunk.css",
+    "static/js/main.e5b2dd0e.chunk.js"
+  ]
+}
