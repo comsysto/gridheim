@@ -1,4 +1,4 @@
-name: Deploy Release Version
+name: release - deploy
 
 on:
   push:
@@ -12,28 +12,28 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v2
 
-      - name: Prepare tag
+      - name: lookup version
         id: prepare_tag
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           TAG_NAME="${GITHUB_REF##refs/tags/}"
           echo "::set-output name=tag_name::${TAG_NAME}"
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: setup nodejs ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Packages
+      - name: npm install
         run: npm install
 
-      - name: Build page
+      - name: npm build
         run: npm run build
 
-      - name: Deploy Release
+      - name: update gh-pages
         run: |
           VERSION_NAME=${{steps.prepare_tag.outputs.tag_name}}
           git fetch

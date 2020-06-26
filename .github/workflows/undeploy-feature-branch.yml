@@ -1,4 +1,4 @@
-name: Undeploy Feature Branch
+name: feature branch - undeploy
 
 on:
   delete:
@@ -12,12 +12,11 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v2
 
-      - name: Prepare Feature Name
+      - name: lookup feature name
         id: prepare_feature_name
-
         run: |
           BRANCH_NAME=${{github.event.ref}}
           echo "BRANCH_NAME ${BRANCH_NAME}"
@@ -25,7 +24,7 @@ jobs:
           echo "::set-output name=feature_name::${FEATURE_NAME}"
           echo "FEATURE-NAME: ${FEATURE_NAME}"
 
-      - name: Deploy Feature
+      - name: update gh-pages
         run: |
           FEATURE_NAME=${{steps.prepare_feature_name.outputs.feature_name}}
           TARGET_DIR=./gh-pages/dev/${FEATURE_NAME}
